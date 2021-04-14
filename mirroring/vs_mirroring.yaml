@@ -1,0 +1,22 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: reviews-vs
+spec:
+  hosts:
+  - reviews
+  http:
+  - route:
+    - destination:
+        host: reviews
+        subset: v2
+      weight: 10
+    - destination:
+        host: reviews 
+        subset: v3
+      weight: 90
+    mirror: # Shadow Traffic :) 
+      host: reviews
+      subset: v1
+    mirrorPercentage:
+      value: 100
