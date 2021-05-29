@@ -1,21 +1,35 @@
 # Lightning Talk - Demo Istio
 
-## Before apply the Istio rules
+### Dependencies
 
-### Create a new namespace with sidecar injection enabled
+* Go:
 
-```
-kubectl create ns NS_NAME
-```
+    https://golang.org/doc/install
+
+* Docker:
+
+    https://docs.docker.com/engine/install/
+* KinD:
+    
+    ``
+    $ go install sigs.k8s.io/kind@v0.11.1
+    ``
+* kubectl:
+
+    https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/
+* istioctl:
+
+    ``
+    $ curl -L https://istio.io/downloadIstio | sh -
+    ``
+    
+    ``
+    $ export PATH=$PWD/bin:$PATH
+   ``
 
 
-```
-kubectl label ns NS_NAME istio-injection=enabled
-```
+### Install demo
 
-### Apply the Istio bookinfo demo
-
-```
-kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.9/samples/bookinfo/platform/kube/bookinfo.yaml -n NS_NAME
-```
-
+``
+$ ./install.sh
+``
